@@ -1,6 +1,6 @@
 if not is_cd_caller then loadstring(game:HttpGet("https://raw.githubusercontent.com/casualdegenerate/cd/master/Better%20Proto%20API"))() end
 local lplr = game:GetService("Players").LocalPlayer
-cmds = {["c"] = function(args)
+local Commands = {["c"] = function(args)
     local s = "cd/COM/\n"..lplr.Name..": "
     local msg = ""
     for _,v in pairs(args) do
