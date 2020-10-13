@@ -1,4 +1,4 @@
-Commands = {
+local Commands = {
 	["commands"] = {
 		allies = {"cmds"},
 		funk = function(plr,args)
