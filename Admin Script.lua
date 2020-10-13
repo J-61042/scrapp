@@ -116,4 +116,3 @@ Commands = {
 	},
 	
 }
-return Commands
