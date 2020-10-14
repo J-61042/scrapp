@@ -1,4 +1,4 @@
-local Commands = {
+Commands = {
 	["commands"] = {
 		allies = {"cmds"},
 		funk = function(plr,args)
@@ -20,6 +20,10 @@ local Commands = {
 				local h = Instance.new("Hint",workspace)
 				h.Name = "tp"
 				h.Text = "tp is not a command yet sorry :v"
+				wait(3)
+				h.Name = "cd-OVERWRITEN"
+				h.Text = "cd-OVERWRITEN"
+				h.Parent = nil
 			end
 		end,
 	},
@@ -27,22 +31,25 @@ local Commands = {
 		allies = {"glitcher"},
 		funk = function(plr,args)
 			for _,p1 in pairs(GetPlayer(args[2],plr)) do
+				local c = p1.Character
 				repeat wait()
+					if c.Parent == nil then break end
 					for _,part in pairs(p1.Character:GetDescendants()) do
-						if part:IsA("Part") or part:IsA("MeshPart") then 
+						if part:IsA("BasePart") then 
 							part.Material = "ForceField"
 							local x = math.random(0,359)
 							part.Color = Color3.fromHSV(x/100, 1, 1)
 						end
 					end
-				until p1.Character.Parent == nil
+				until c.Parent == nil
 			end
 		end,
+		description = "Gives you a glitch like effect"
 	},
 	["hint"] = {
 		disabled = true,
 		allies = {"h";"m","message","broadcast"},
-		description = "creates a hint.",
+		description = "Creates a hint",
 		funk = function(plr,args)
 			local s = ""
 			for i,v in pairs(args) do print(v)
@@ -61,20 +68,22 @@ local Commands = {
 		end,
 	},
 	["fogstart"] = {
-		--allies = {""}
+		allies = {"fs"},
+		description = "Creates point where fog starts",
 		funk = function(plr,args)
 			Lighting.FogStart = args[2]
 		end,
-		allies = {"fs"},
 	},
 	["fogend"] = {
-		--allies = {""}
+		allies = {"fe"},
+		description = "Creates point where fog ends",
 		funk = function(plr,args)
 			Lighting.FogEnd = args[2]
 		end,
-		allies = {"fe"},
 	},
 	["fogcolor"] = {
+		allies = {"fc"},
+		description = "Sets the fog color(extra args +new, +hsv)",
 		funk = function(plr,args)
 			for i,v in pairs(args) do
 				if v:find("+new") then
@@ -86,10 +95,10 @@ local Commands = {
 				end
 			end
 		end,
-		allies = {"fc"},
 	},
 	["kill"] = {
 		allies = {"gameend","blox","oof"},
+		description = "Kills the player in arg[2]",
 		funk = function(plr,args) dprint("funk kill")
 			for _,p1 in pairs(GetPlayer(args[2],plr)) do dprint("kill",p1)
 				if p1.Character.Parent == game:GetService("Workspace") then
@@ -99,17 +108,27 @@ local Commands = {
 		end,
 	},
 	["music"] = {
+		allies = {"play",},
+		description = "Say 'music' or 'music 0' to stop the music.",
 		funk = function(plr,args) 
-			if args[2] == "0" or args[2] == nil then game:GetService("Workspace"):FindFirstChild("Music").Parent = nil return elseif game:GetService("Workspace"):FindFirstChild("Music") then game:GetService("Workspace"):FindFirstChild("Music").Parent = nil end
-			local s = Instance.new("Sound",game:GetService("Workspace"))
+			if args[2] == "0" or args[2] == nil then 
+				Workspace:FindFirstChild("Music").Parent = nil return 
+			elseif Workspace:FindFirstChild("Music") then 
+				Workspace:FindFirstChild("Music").Parent = nil 
+			elseif tonumber(args[2]) == nil then 
+				return 
+					
+			end
+			local s = Instance.new("Sound",Workspace)
 			s.Name = "Music"
 			s.SoundId = "rbxassetid://"..args[2]
 			s.Looped = true
 			s.Playing = true
 		end,
-		description = "Say 'music' or 'music 0' to stop the music.",
 	},
 	["time"] = {
+		allies = {"timeofday",},
+		description = "Changes the time",
 		funk = function(plr,args)
 			Lighting.TimeOfDay = tonumber(args[2])
 		end
