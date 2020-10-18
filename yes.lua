@@ -1,7 +1,6 @@
-local lplr = game:GetService("Players").LocalPlayer
 while true do fwait()
   fireclickdetector(game:GetService("Workspace").CoffeeGiver.CoffeeGiver.ClickDetector)
-  local t = lplr.Backpack:WaitForChild("Coffee")
+  local t = game:GetService("Players").LocalPlayer.Backpack:WaitForChild("Coffee")
   t.CanBeDropped = true
-  t.Parent = lplr.Character
+  t.Parent = game:GetService("Players").LocalPlayer.Character
 end
