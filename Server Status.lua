@@ -8,7 +8,11 @@ while true do
 	for _,v in pairs(j.Collection) do
 		if v.Guid == game.JobId and v.Fps ~= last then
 			last = v.Fps
-			lchat(tostring(v.Fps))
+			game.StarterGui:SetCore("ChatMakeSystemMessage", {
+				TextSize = 18, 
+				Text = tostring(v.Fps), 
+				Color = Color3.new(.1,1,.1)
+			})
 		end
 	end
 wait(1)end
