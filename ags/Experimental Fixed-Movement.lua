@@ -1,4 +1,4 @@
-if not fwait() then loadstring(game:HttpGet("https://raw.githubusercontent.com/casualdegenerate/cd/master/Better Proto API"))() end
+if not fwait() then loadstring(game:HttpGet("https://raw.githubusercontent.com/casualdegenerate/cd/master/Better%20Proto%20API"))() end
 local lplr = game:GetService("Players").LocalPlayer
 local cam = game:GetService("Workspace").Camera
 lplr.Character.Archivable = true
