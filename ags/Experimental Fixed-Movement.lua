@@ -6,7 +6,6 @@ local RIG = lplr.Character:clone()
 local f = Instance.new("ForceField",RIG)
 getgenv().updateRate = .1
 getgenv().framewaits = false
-local ylock = true
 
 RIG.Parent = game:GetService("Workspace")
 cam.CameraSubject = RIG.Humanoid
@@ -30,11 +29,7 @@ lplr.CharacterAdded:connect(function(c)
         while c do
             local hr = c:WaitForChild("HumanoidRootPart",5)
             if hr then
-				if ylock then
-					hr.CFrame = CFrame.new(Vector3.new(RIG.HumanoidRootPart.X,0,))
-				else
-					hr.CFrame = CFrame.new(RIG.HumanoidRootPart.Position)
-				end
+				hr.CFrame = CFrame.new(RIG.HumanoidRootPart.Position)
             end
 		if framewaits then
 			fwait()
