@@ -1,0 +1,22 @@
+local bol,err = pcall(function()
+    getgenv().haha = true
+    while haha do
+        sethiddenproperty(game:GetService("Players").LocalPlayer,"MaximumSimulationRadius",math.huge)
+        setsimulationradius(1e308)
+        for _,v in pairs(game:GetService("Workspace").Vehicles:GetDescendants()) do
+            if v:IsA("BasePart") then
+                if v.Anchored == false then
+            	    v.Velocity = Vector3.new(0,25,0)
+            	    v.RotVelocity = Vector3.new(0,100,0)
+            	end
+            end
+        end
+    wait(.1)end
+end)
+fspawn(function()
+    while true do 
+        if err then
+            rconsoleprint("Error? "..err)
+        end
+    fwait()end
+end) --error catch might work.
