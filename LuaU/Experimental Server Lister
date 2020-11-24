@@ -86,11 +86,16 @@ Commands = {
             local h
             local asdf1
             local asdf2
-            local lastdata = "haha"
+            local lastdata = "0"
             while tostring(lastdata) ~= "nil" and not breaker do
                 pcall(function()
-                    local r = Fetch.Get("https://games.roblox.com/v1/games/"..tostring(game.PlaceId).."/servers/Public?sortOrder=Asc&limit=50")
-                    h = JSOND(r)
+                    if lastdata == "0" then
+                        local r = Fetch.Get("https://games.roblox.com/v1/games/"..tostring(game.PlaceId).."/servers/Public?sortOrder=Asc&limit=100")
+                        h = JSOND(r)
+                    else
+                        local r = Fetch.Get("https://games.roblox.com/v1/games/"..tostring(game.PlaceId).."/servers/Public?sortOrder=Asc&limit=100&cursor="..lastdata)
+                        h = JSOND(r)
+                    end
                 end)
                 lastdata = tostring(h.nextPageCursor)
                 for _,server in pairs(h.data) do if breaker then rbreaker = true break end
