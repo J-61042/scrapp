@@ -6,7 +6,7 @@ seconds = 00
 if not neg then
     time = ((hours*60^2)+(minutes*60)+seconds)print(time)
 else
-    time = (4294967296-(hours*60^2)-(minutes*60)-seconds)print(time) -- Last number is the FF FF FF FF to reset all the way around.
+    time = (4294967296-(hours*60^2)-(minutes*60)-seconds)print(time) -- First number is the FF FF FF FF to reset all the way around to the negative side :)
 end
 equ = scale*time
 print(equ)
