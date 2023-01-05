@@ -48,7 +48,7 @@ cdENV.RIG.HumanoidRootPart.ChildAdded:connect(function(c)
 		fwait()c:Destroy()
 	end
 end)
-game:GetService('RunService').RenderStepped:connect(function()for _,v in next,cdENV.RIG:GetDescendants()do v.CanCollide=false;end)
+game:GetService('RunService').RenderStepped:connect(function()for _,v in next,cdENV.RIG:GetDescendants()do if v:IsA('BasePart') then v.CanCollide=false;print('RIG',v.Name)end;end;end)
 
 lplr.CharacterAdded:connect(function(c) 
 	if cdENV.RIG then
@@ -56,7 +56,7 @@ lplr.CharacterAdded:connect(function(c)
 		game:GetService("RunService").RenderStepped:connect(function()
 			if c.Parent ~= nil or c:FindFirstChild("Humanoid") then
 				c.Humanoid.DisplayDistanceType = "None"
-				c.Humanoid:ChangeState(11)
+				for _, v in next, c:GetDescendants()do if v:IsA('BasePart')then v.CanCollide=false;print('AVA',v.Name)end;end
 			end
 		end)
 		cam.CameraSubject = cdENV.RIG.Humanoid
